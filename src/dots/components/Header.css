@@ -1,0 +1,13 @@
+.dots-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+
+  color: white;
+
+
+  -webkit-box-shadow: 0px 6px 15px 4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 6px 15px 4px rgba(0,0,0,0.75);
+  box-shadow: 0px 6px 15px 4px rgba(0,0,0,0.75);
+}

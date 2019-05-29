@@ -1,0 +1,20 @@
+.dots-container {
+  flex: 1;
+  margin: 30px 40px 30% 40px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+}
+
+.dots-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.dots-row--between {
+  justify-content: space-between;
+}
+
+.dots-row--around {
+  justify-content: space-around;
+}
