@@ -2,6 +2,7 @@
   "name": "reaction",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://jfangrad.github.io/reaction",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -10,6 +11,8 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
@@ -22,6 +25,7 @@
     "@types/react-dom": "^16.8.4",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
+    "gh-pages": "^2.0.1",
     "react-test-renderer": "^16.8.6",
     "typescript": "^3.4.5"
   }
