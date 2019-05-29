@@ -11,8 +11,12 @@ interface Props {
 export default function DotsContainer(props: Props) {
   const { updateScore, activeIndex } = props;
 
+  const handleMissClick = () => {
+    updateScore(-1);
+  }
+
   return (
-    <div className="dots-container">
+    <div className="dots-container" onClick={handleMissClick}>
       <div className="dots-row dots-row--between">
         <Button activeIndex={activeIndex} index={1} onClick={updateScore} />
         <Button activeIndex={activeIndex} index={2} onClick={updateScore} />

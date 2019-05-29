@@ -14,28 +14,39 @@ function getRandomInt(max: number, prev: number = 0) {
 
 const MAX_INDEX = 11;
 const INITIAL_ACTIVE_KEY = getRandomInt(MAX_INDEX);
+const STATUS = {
+  COUNTDOWN: 'countdown',
+  PLAY: 'play',
+  DONE: 'done',
+};
 
 export default function Dots() {
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(15);
+  const [status, setStatus] = useState(STATUS.PLAY);
+  const [ , setMissClicks] = useState(0);
   const [activeIndex, setActiveIndex] = useState(INITIAL_ACTIVE_KEY);
   const intervalRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => setTime(p => p - 1), 1000);
-  }, []);
+    if (status === STATUS.PLAY) {
+      intervalRef.current = setInterval(() => setTime(p => p - 1), 1000);
+    }
+  }, [status]);
 
   useEffect(() => {
     if (time <= 0) {
       clearInterval(intervalRef.current!);
+      setStatus(STATUS.DONE);
     }
   });
 
   const handleScoreUpdate = (index: number) => {
-    console.log(index, activeIndex);
-    if (index === activeIndex) {
+    if (index === activeIndex && status === STATUS.PLAY) {
       setScore(p => p + 1);
       setActiveIndex(p => getRandomInt(MAX_INDEX, p));
+    } else if (index === -1) {
+      setMissClicks(p => p + 1);
     }
   }
 

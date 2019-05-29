@@ -11,8 +11,8 @@ interface Props {
 export default function Button(props: Props) {
   const { onClick, index, activeIndex } = props;
 
-  function handleClick() {
-    console.log(index);
+  function handleClick(e: any) {
+    e.stopPropagation();
     onClick(index);
   }
 
