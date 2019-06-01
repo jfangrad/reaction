@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DotsContainer from './DotsContainer';
 import Header from './Header';
+import Summary from './Summary';
 
 import './Dots.css';
 
@@ -13,18 +14,19 @@ function getRandomInt(max: number, prev: number = 0) {
 }
 
 const MAX_INDEX = 11;
+const GAME_LENGTH = 15;
 const INITIAL_ACTIVE_KEY = getRandomInt(MAX_INDEX);
 const STATUS = {
   COUNTDOWN: 'countdown',
-  PLAY: 'play',
   DONE: 'done',
+  PLAY: 'play',
 };
 
 export default function Dots() {
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(15);
+  const [time, setTime] = useState(GAME_LENGTH);
   const [status, setStatus] = useState(STATUS.PLAY);
-  const [ , setMissClicks] = useState(0);
+  const [missClicks , setMissClicks] = useState(0);
   const [activeIndex, setActiveIndex] = useState(INITIAL_ACTIVE_KEY);
   const intervalRef = useRef<NodeJS.Timeout>();
 
@@ -38,6 +40,7 @@ export default function Dots() {
     if (time <= 0) {
       clearInterval(intervalRef.current!);
       setStatus(STATUS.DONE);
+      setTime(0);
     }
   });
 
@@ -48,6 +51,20 @@ export default function Dots() {
     } else if (index === -1) {
       setMissClicks(p => p + 1);
     }
+  }
+
+  const resetGame = () => {
+    setStatus(STATUS.PLAY);
+    setTime(GAME_LENGTH);
+    setScore(0);
+  }
+
+  if (status === STATUS.DONE) {
+    return <Summary
+      score={score}
+      missClicks={missClicks}
+      resetGame={resetGame}
+    />;
   }
 
   return (
