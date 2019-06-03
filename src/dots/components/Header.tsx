@@ -13,7 +13,7 @@ export default function Header(props: Props) {
   return (
     <div className="dots-header">
       <div>{time}</div>
-      <div>score: {score}</div>
+      <div>Score: {score}</div>
     </div>
   )
 }

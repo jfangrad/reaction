@@ -4,6 +4,7 @@ import Header from './Header';
 import Summary from './Summary';
 
 import './Dots.css';
+import Countdown from './Countdown';
 
 function getRandomInt(max: number, prev: number = 0) {
   let num;
@@ -25,7 +26,7 @@ const STATUS = {
 export default function Dots() {
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(GAME_LENGTH);
-  const [status, setStatus] = useState(STATUS.PLAY);
+  const [status, setStatus] = useState(STATUS.COUNTDOWN);
   const [missClicks , setMissClicks] = useState(0);
   const [activeIndex, setActiveIndex] = useState(INITIAL_ACTIVE_KEY);
   const intervalRef = useRef<NodeJS.Timeout>();
@@ -53,10 +54,15 @@ export default function Dots() {
     }
   }
 
-  const resetGame = () => {
+  const onCountdownFinish = () => {
     setStatus(STATUS.PLAY);
+  }
+
+  const resetGame = () => {
+    setStatus(STATUS.COUNTDOWN);
     setTime(GAME_LENGTH);
     setScore(0);
+    setMissClicks(0);
   }
 
   if (status === STATUS.DONE) {
@@ -69,6 +75,7 @@ export default function Dots() {
 
   return (
     <div className='dots-game-container'>
+      {status === STATUS.COUNTDOWN && <Countdown onFinish={onCountdownFinish} />}
       <Header score={score} time={time} />
       <DotsContainer updateScore={handleScoreUpdate} activeIndex={activeIndex} />
     </div>

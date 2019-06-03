@@ -1,0 +1,26 @@
+.countdown-container {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: none;
+}
+
+.countdown-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.countdown-text {
+  font-size: 350px;
+  z-index: 999;
+  color: var(--dots-color-active);
+}
