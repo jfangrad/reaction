@@ -6,7 +6,7 @@ import DotsMenu from './Menu';
 const Game = () => {
 
   return (
-    <Router>
+    <Router basename="reaction">
       <Route exact path="/" component={DotsMenu} />
       <Route path="/game" component={Dots} />
     </Router>
