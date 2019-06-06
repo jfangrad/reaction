@@ -1,3 +1,3 @@
-import Dots from './components/Dots';
+import Game from './Game';
 
-export default Dots
+export default Game;

@@ -1,6 +1,8 @@
 import React from 'react';
+import Button from 'src/dots/shared/Button';
 
 import './Summary.css';
+import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
 
 interface Props {
   score: number;
@@ -16,7 +18,8 @@ export default function Summary(props: Props) {
       <span className="summary--title">Well done!</span>
       <span className="summary--score">Score: {score}</span>
       <span className="summary--missclicks">Misses: {missClicks}</span>
-      <button className="summary--play-again" onClick={resetGame}>Play again</button>
+      <Button onClick={resetGame}>Play Again</Button>
+      <LinkButton to="/">Menu</LinkButton>
     </div>
   )
 }

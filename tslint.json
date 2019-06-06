@@ -11,6 +11,7 @@
   "rules": {
     "interface-name" : [true, "never-prefix"],
     "import-sources-order": "any",
-    "ordered-imports": false
+    "ordered-imports": false,
+    "jsx-boolean-value": false
   }
 }
