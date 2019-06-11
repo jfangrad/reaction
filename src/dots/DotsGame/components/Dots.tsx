@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import classNames from 'classnames';
+import { STATUS } from 'src/dots/constants';
 import DotsContainer from './DotsContainer';
 import Header from './Header';
 import Summary from './Summary';
-
-import './Dots.css';
 import Countdown from './Countdown';
+
+import './Dots.less';
 
 function getRandomInt(max: number, prev: number = 0) {
   let num;
@@ -15,13 +17,8 @@ function getRandomInt(max: number, prev: number = 0) {
 }
 
 const MAX_INDEX = 11;
-const GAME_LENGTH = 15;
+const GAME_LENGTH = 1;
 const INITIAL_ACTIVE_KEY = getRandomInt(MAX_INDEX);
-const STATUS = {
-  COUNTDOWN: 'countdown',
-  DONE: 'done',
-  PLAY: 'play',
-};
 
 export default function Dots() {
   const [score, setScore] = useState(0);
@@ -65,19 +62,18 @@ export default function Dots() {
     setMissClicks(0);
   }
 
-  if (status === STATUS.DONE) {
-    return <Summary
-      score={score}
-      missClicks={missClicks}
-      resetGame={resetGame}
-    />;
-  }
-
   return (
-    <div className='dots-game-container'>
+    <div className={classNames('dots-game-container', { 'dots-game-container--done': status === STATUS.DONE })}>
       {status === STATUS.COUNTDOWN && <Countdown onFinish={onCountdownFinish} />}
       <Header score={score} time={time} />
-      <DotsContainer updateScore={handleScoreUpdate} activeIndex={activeIndex} />
+      <DotsContainer updateScore={handleScoreUpdate} activeIndex={status === STATUS.PLAY ? activeIndex : -1} />
+      {status === STATUS.DONE &&
+      <Summary
+        score={score}
+        missClicks={missClicks}
+        resetGame={resetGame}
+      />
+      }
     </div>
   );
 }

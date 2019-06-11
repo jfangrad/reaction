@@ -3,6 +3,47 @@
 .dots-menu {
   height: 100%;
   background-color: @background-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--title {
+    color: white;
+    font-size: 2.75em;
+    width: 100%;
+    text-align: start;
+    margin: 44px 0px 10px 35px;
+
+    .underline-small {
+      width: 100%;
+      border: 1px solid @primary;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .underline-large {
+      width: 100%;
+      border: 5px solid @primary;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin: 5px 0;
+    }
+  }
+}
+
+.dots-menu--description {
+  color: white;
+
+  .description--main {
+    font-size: 1.5em;
+  }
+
+  .description--sub {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .description--minor {
+    font-size: 1em;
+  }
 }
 
 .dots-menu--butons-container {
@@ -17,19 +58,5 @@
     &:first-of-type {
       margin-bottom: 50px;
     }
-  }
-}
-
-.dots-menu--description {
-  .description--main {
-
-  }
-
-  .description--sub {
-
-  }
-
-  .description--minor {
-
   }
 }

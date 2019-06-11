@@ -13,7 +13,12 @@ export default function Menu(props: RouteChildrenProps) {
 
   return (
     <div className="dots-menu">
-      <div className="dots-menu--title">Dots</div>
+      <div className="dots-menu--title">
+        Times Up
+        <div className="underline-small" />
+        <div className="underline-large" />
+        <div className="underline-small" />
+      </div>
       <div className="dots-menu--description">
         <div className="description--main">
           Race against the clock
@@ -22,7 +27,7 @@ export default function Menu(props: RouteChildrenProps) {
           Test your reactions
         </div>
         <div className="description--minor">
-          Race against the clock
+          Hit the <span className="text--green">green</span> targets
         </div>
       </div>
       <div className="dots-menu--butons-container">

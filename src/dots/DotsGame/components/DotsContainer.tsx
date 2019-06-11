@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-import './DotsContainer.css';
+import './DotsContainer.less';
 
 interface Props {
   updateScore: (key: number) => void;
