@@ -17,7 +17,7 @@ function getRandomInt(max: number, prev: number = 0) {
 }
 
 const MAX_INDEX = 11;
-const GAME_LENGTH = 1;
+const GAME_LENGTH = 15;
 const INITIAL_ACTIVE_KEY = getRandomInt(MAX_INDEX);
 
 export default function Dots() {
