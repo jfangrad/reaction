@@ -1,3 +1,3 @@
-import Game from './Game';
+import DotsRoutes from './DotsRoutes';
 
-export default Game;
+export default DotsRoutes;

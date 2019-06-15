@@ -1,9 +1,11 @@
-import React from 'react';
-import Button from 'src/dots/shared/Button';
+import React, { useState, useEffect } from 'react';
 import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
+import Header from './Header';
+import { insertScore, updateScore } from '../utils/localStorage';
+import { Pages, UNNAMED_SCORE } from '../utils/constants';
 
 import './Summary.less';
-import Header from './Header';
+import { LocationDescriptorObject } from 'history';
 
 interface Props {
   score: number;
@@ -12,26 +14,57 @@ interface Props {
 }
 
 export default function Summary(props: Props) {
-  const { score, resetGame } = props;
+  const { score } = props;
+  const [name, setName] = useState('');
+  const [scoreId, setScoreId] = useState('');
+
+  useEffect(() => {
+    const value = insertScore(score, UNNAMED_SCORE);
+    setScoreId(value.id);
+  }, [])
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName((e.nativeEvent.srcElement as any).value);
+  };
+
+  const handleGoClick = () => {
+    if (name.length) {
+      updateScore(scoreId, { name });
+    }
+  };
+
+  const locationObject : LocationDescriptorObject = {
+    pathname: Pages.HighScores,
+    state: { scoreId },
+  };
 
   return (
     <>
       <div className="summary--mask" />
       <div className="summary-container">
         <Header inGame={false} />
-        <span className="summary--score">Score: {score}</span>
+        <div className="summary--score">
+          <div>Your score:</div>
+          <div className="score--value">{score}</div>
+        </div>
         <div className="summary-name--container">
           <div className="summary-name--title">
             Enter your nickname
           </div>
-          <input className="summary-name--input" type="text" placeholder="eg. racer123" />
+          <input
+            className="summary-name--input"
+            type="text"
+            placeholder="eg. racer123"
+            value={name}
+            onChange={handleNameChange}
+          />
         </div>
         <div className="summary-buttons--container">
-          <Button onClick={resetGame}>GO</Button>
+          <LinkButton to={locationObject} onClick={handleGoClick}>GO</LinkButton>
           <div className="summary-buttons--seperator">
             <span /><div className="summary-buttons--seperator-text">OR</div><span />
           </div>
-          <LinkButton type="secondary" to="/">Home</LinkButton>
+          <LinkButton type="secondary" to={Pages.Home}>Home</LinkButton>
         </div>
       </div>
     </>

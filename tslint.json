@@ -12,6 +12,7 @@
     "interface-name" : [true, "never-prefix"],
     "import-sources-order": "any",
     "ordered-imports": false,
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "curly": false,
   }
 }

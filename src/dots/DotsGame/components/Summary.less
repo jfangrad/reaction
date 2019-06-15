@@ -6,7 +6,7 @@
   height: 100%;
 
   background-color: @background-color;
-  opacity: 0.93;
+  opacity: 0.94;
 }
 
 .summary-container {
@@ -22,6 +22,12 @@
 .summary--score {
   color: white;
   font-size: 2em;
+
+  .score--value {
+    margin-top: 0.5em;
+    border: 2px solid @primary-light;
+    border-radius: 21px;
+  }
 }
 
 
@@ -62,6 +68,7 @@
   .button-secondary {
     font-size: 1.4em;
     max-width: 65%;
+    align-self: center;
   }
 
   .summary-buttons--seperator {

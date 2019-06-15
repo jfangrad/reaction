@@ -1,16 +1,10 @@
 import React from 'react';
-import Button from 'src/dots/shared/Button';
-import { RouteChildrenProps } from 'react-router';
+import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
 
 import '../styles/Menu.less';
+import { Pages } from 'src/dots/DotsGame/utils/constants';
 
-export default function Menu(props: RouteChildrenProps) {
-  const { history } = props;
-
-  const onClick = () => {
-    history.push('game');
-  }
-
+export default function Menu() {
   return (
     <div className="dots-menu">
       <div className="dots-menu--title">
@@ -31,8 +25,8 @@ export default function Menu(props: RouteChildrenProps) {
         </div>
       </div>
       <div className="dots-menu--butons-container">
-        <Button onClick={onClick}>Start</Button>
-        <Button onClick={onClick} type="secondary">Highscores</Button>
+        <LinkButton to={Pages.Game}>Start</LinkButton>
+        <LinkButton to={Pages.HighScores} type="secondary">Highscores</LinkButton>
       </div>
     </div>
   )

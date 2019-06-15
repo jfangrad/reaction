@@ -1,20 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { LocationDescriptor } from 'history';
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import { LocationDescriptor, LocationDescriptorObject } from 'history';
 import Button, { ButtonProps } from 'src/dots/shared/Button';
 
 interface Props {
   to: LocationDescriptor,
 };
 
-type LinkButtonProps = Props & ButtonProps
+type LinkButtonProps = Props & ButtonProps & RouteComponentProps;
 
-export default function LinkButton(props: LinkButtonProps) {
-  const { to, onClick, ...rest } = props;
+const LinkButton = (props: LinkButtonProps) => {
+  const { to, onClick, history, ...rest } = props;
 
-  return (
-    <Link to={to}>
-      <Button onClick={onClick} {...rest} />
-    </Link>
-  )
-}
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (onClick) {
+      onClick(e);
+    }
+
+    history.push(to as LocationDescriptorObject);
+  }
+
+  return <Button onClick={handleClick} {...rest} />;
+};
+
+export default withRouter<LinkButtonProps>(LinkButton);
