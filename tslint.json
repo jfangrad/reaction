@@ -13,6 +13,6 @@
     "import-sources-order": "any",
     "ordered-imports": false,
     "jsx-boolean-value": false,
-    "curly": false,
+    "curly": false
   }
 }
