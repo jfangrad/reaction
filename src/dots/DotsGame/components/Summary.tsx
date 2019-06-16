@@ -34,7 +34,6 @@ export default function Summary(props: Props) {
   };
 
   const handleSubmit = (e: any) => {
-    console.log(goRef);
     if (e.nativeEvent.keyCode === Key.Enter && goRef.current) {
       handleGoClick();
       goRef.current.click();
