@@ -9,7 +9,7 @@
     }
   ],
   "start_url": "./index.html",
-  "display": "fullscreen",
+  "display": "minimal-ui",
   "theme_color": "#3b3f47",
   "background_color": "#3b3f47"
 }
