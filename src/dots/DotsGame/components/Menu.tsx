@@ -1,8 +1,8 @@
 import React from 'react';
 import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
+import { Pages } from 'src/common/constants';
 
-import '../styles/Menu.less';
-import { Pages } from 'src/dots/DotsGame/utils/constants';
+import './Menu.less';
 
 export default function Menu() {
   return (
@@ -25,8 +25,11 @@ export default function Menu() {
         </div>
       </div>
       <div className="dots-menu--butons-container">
-        <LinkButton to={Pages.Game}>Start</LinkButton>
-        <LinkButton to={Pages.HighScores} type="secondary">Highscores</LinkButton>
+        <LinkButton to={Pages.Dots.Game}>Start</LinkButton>
+        <div className="dots-menu--secondary-container">
+          <LinkButton to={Pages.Home} type="secondary">Main Menu</LinkButton>
+          <LinkButton to={Pages.Dots.HighScores} type="secondary">Highscores</LinkButton>
+        </div>
       </div>
     </div>
   )

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Pages, UNNAMED_SCORE, Key } from 'src/common/constants';
 import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
 import Header from './Header';
 import { insertScore, updateScore } from '../utils/localStorage';
-import { Pages, UNNAMED_SCORE, Key } from '../utils/constants';
 
 import './Summary.less';
 import { LocationDescriptorObject } from 'history';
@@ -47,7 +47,7 @@ export default function Summary(props: Props) {
   };
 
   const locationObject : LocationDescriptorObject = {
-    pathname: Pages.HighScores,
+    pathname: Pages.Dots.HighScores,
     state: { scoreId },
   };
 
@@ -79,7 +79,7 @@ export default function Summary(props: Props) {
           <div className="summary-buttons--seperator">
             <span /><div className="summary-buttons--seperator-text">OR</div><span />
           </div>
-          <LinkButton type="secondary" to={Pages.Home}>Home</LinkButton>
+          <LinkButton type="secondary" to={Pages.Dots.Home}>Home</LinkButton>
         </div>
       </div>
     </>

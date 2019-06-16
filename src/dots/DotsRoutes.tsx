@@ -1,18 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import DotsMenu from './Menu';
-import Dots from './DotsGame';
-import Highscores from './DotsGame/components/Highscores';
-import { Pages } from './DotsGame/utils/constants';
+import { Route } from 'react-router-dom';
+import { Pages } from 'src/common/constants';
+import { DotsGame, DotsMenu, DotsHighscores } from './DotsGame';
 
 const Game = () => {
 
   return (
-    <Router basename="reaction">
-      <Route exact path={Pages.Home} component={DotsMenu} />
-      <Route path={Pages.Game} component={Dots} />
-      <Route path={Pages.HighScores} component={Highscores} />
-    </Router>
+    <>
+      <Route exact path={Pages.Dots.Home} component={DotsMenu} />
+      <Route path={Pages.Dots.Game} component={DotsGame} />
+      <Route path={Pages.Dots.HighScores} component={DotsHighscores} />
+    </>
   );
 }
 

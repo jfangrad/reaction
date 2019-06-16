@@ -1,6 +1,6 @@
 import shortid from 'shortid';
+import { SCORE_KEY } from 'src/common/constants';
 import { ScoreType, ScoreUpdateType } from './types';
-import { SCORE_KEY } from './constants';
 
 export function getScores(): ScoreType[] {
   const values = localStorage.getItem(SCORE_KEY);

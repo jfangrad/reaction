@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { STATUS } from 'src/dots/constants';
+import { STATUS } from 'src/common/constants';
 import DotsContainer from './DotsContainer';
 import Header from './Header';
 import Summary from './Summary';

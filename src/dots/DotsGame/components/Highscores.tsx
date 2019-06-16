@@ -1,14 +1,14 @@
 import React from 'react';
 import { RouteProps } from 'react-router';
 import classNames from 'classnames';
+import { Pages } from 'src/common/constants';
+import Trophy from 'src/dots/shared/Icons/Trophy';
+import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
 import Header from './Header';
 import { getScores } from '../utils/localStorage';
 import { ScoreType } from '../utils/types';
 
 import './Highscores.less';
-import Trophy from 'src/dots/shared/Icons/Trophy';
-import LinkButton from 'src/dots/shared/LinkButton/LinkButton';
-import { Pages } from '../utils/constants';
 
 // TODO: Refactor out Header to Route level
 const Highscores = (props: RouteProps) => {
@@ -48,8 +48,8 @@ const Highscores = (props: RouteProps) => {
           {scores.map(renderScore)}
         </ul>
         <div className="highscore-buttons--container">
-          <LinkButton to={Pages.Game}>{playButtonText}</LinkButton>
-          <LinkButton type="secondary" to={Pages.Home}>Home</LinkButton>
+          <LinkButton to={Pages.Dots.Game}>{playButtonText}</LinkButton>
+          <LinkButton type="secondary" to={Pages.Dots.Home}>Home</LinkButton>
         </div>
       </div>
     </div>
