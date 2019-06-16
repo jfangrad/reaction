@@ -1,5 +1,13 @@
 @import '../../../variables.less';
 
+.summary-disabled {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  z-index: 999;
+}
+
 .summary--mask {
   position: absolute;
   width: 100%;
@@ -20,6 +28,7 @@
 }
 
 .summary--score {
+  pointer-events: none;
   color: white;
   font-size: 2em;
 
@@ -37,6 +46,7 @@
   .summary-name--title {
     font-size: 1.5em;
     margin-bottom: 40px;
+    pointer-events: none;
   }
 
   .summary-name--input {
@@ -76,6 +86,7 @@
     flex-direction: row;
     align-items: center;
     margin: 20px 5px;
+    pointer-events: none;
 
     .summary-buttons--seperator-text {
       flex: 0;

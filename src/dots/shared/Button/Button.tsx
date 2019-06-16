@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, forwardRef } from 'react';
 import classNames from 'classnames';
 
 import './Button.less';
@@ -11,7 +11,7 @@ export interface Props {
 }
 
 
-export default function Button(props: Props) {
+const Button = forwardRef((props: Props, ref: React.RefObject<HTMLButtonElement>) => {
   const { onClick, className, type, children } = props;
 
   const classes = classNames(
@@ -23,12 +23,13 @@ export default function Button(props: Props) {
     }
   )
   return (
-    <button className={classes} onClick={onClick}>{children}</button>
+    <button className={classes} onClick={onClick} ref={ref}>{children}</button>
   );
-}
+});
 
 Button.defaultProps = {
-  className: null,
   onClick: () => null,
   type: 'primary',
 }
+
+export default Button;

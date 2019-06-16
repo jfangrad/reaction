@@ -7,3 +7,7 @@ export const Pages = {
   HighScores: '/scores',
   Home: '/',
 }
+
+export const Key = {
+  Enter: 13,
+}

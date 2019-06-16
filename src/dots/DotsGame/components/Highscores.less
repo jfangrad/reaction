@@ -11,13 +11,19 @@
 
 .highscore--title {
   display: flex;
-  margin: 32px 40px;
+  margin: 0.5em 40px;
   font-size: 2em;
   color: white;
   text-transform: uppercase;
   border-bottom: 1px solid white;
   padding: 0 30px 10px 30px;
   justify-content: center;
+}
+
+.highscore--text {
+  color: @primary;
+  font-size: 1.25em;
+  text-transform: uppercase;
 }
 
 .highscore--list-button-wrapper {
@@ -32,18 +38,22 @@
   list-style-type: none;
   margin: 0 40px;
   padding: 0;
-  max-height: 250px;
-  min-height: 250px;
-  overflow: hidden;
+  max-height: 80%;
+  overflow: scroll;
 
   .highscore--item {
     display: flex;
     flex-direction: row;
     color: white;
     font-size: 1.45em;
-    margin: 5px 0;
+    padding: 5px;
     justify-content: space-between;
     align-items: center;
+
+    &-new {
+      border: 2px solid white;
+      border-radius: 11px;
+    }
 
     &-selected {
       color: @primary;
@@ -60,6 +70,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .item--name {
+      white-space: nowrap;
+      max-width: 64%;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .item--score {

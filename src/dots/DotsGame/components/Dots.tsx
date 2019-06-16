@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { STATUS } from 'src/dots/constants';
 import DotsContainer from './DotsContainer';
 import Header from './Header';
@@ -17,7 +18,7 @@ function getRandomInt(max: number, prev: number = 0) {
 }
 
 const MAX_INDEX = 11;
-const GAME_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 15;
+const GAME_LENGTH = process.env.NODE_ENV === 'development' ? 2 : 15;
 const INITIAL_ACTIVE_KEY = getRandomInt(MAX_INDEX);
 
 export default function Dots() {
@@ -27,6 +28,12 @@ export default function Dots() {
   const [missClicks , setMissClicks] = useState(0);
   const [activeIndex, setActiveIndex] = useState(INITIAL_ACTIVE_KEY);
   const intervalRef = useRef<NodeJS.Timeout>();
+
+  // Disable scrolling to stop any issues while tapping
+  useEffect(() => {
+    disableBodyScroll(null as any);
+    return () => enableBodyScroll(null as any);
+  }, []);
 
   useEffect(() => {
     if (status === STATUS.PLAY) {
@@ -68,11 +75,11 @@ export default function Dots() {
       <Header score={score} time={time} />
       <DotsContainer updateScore={handleScoreUpdate} activeIndex={status === STATUS.PLAY ? activeIndex : -1} />
       {status === STATUS.DONE &&
-      <Summary
-        score={score}
-        missClicks={missClicks}
-        resetGame={resetGame}
-      />
+        <Summary
+          score={score}
+          missClicks={missClicks}
+          resetGame={resetGame}
+        />
       }
     </div>
   );

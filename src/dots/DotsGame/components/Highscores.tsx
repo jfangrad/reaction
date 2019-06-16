@@ -12,31 +12,43 @@ import { Pages } from '../utils/constants';
 
 // TODO: Refactor out Header to Route level
 const Highscores = (props: RouteProps) => {
-  const { state: { scoreId } } = props.location!;
-
+  const { state } = props.location!;
+  const { scoreId } = (state || {})!;
   const scores = getScores();
 
   const renderScore = (score: ScoreType, index: number) => {
     const indexMarkup = index === 0 ? <Trophy /> : index + 1;
+    const isCurrentScore = scoreId === score.id;
+    const classes = classNames(
+      'highscore--item',
+      {
+        'highscore--item-new': index === 0 && isCurrentScore,
+        'highscore--item-selected': isCurrentScore,
+      },
+    );
     return (
-      <li className={classNames('highscore--item', { 'highscore--item-selected': scoreId === score.id })} key={score.id}>
+      <li className={classes} key={score.id}>
         <div className="item--index">{indexMarkup}</div>
-        <span>{score.name}</span>
+        <span className="item--name">{score.name}</span>
         <span className="item--score">{score.score}</span>
       </li>
     );
-  }
+  };
+
+  const isNewHighscore = scores[0] && scores[0].id === scoreId;
+  const playButtonText = scoreId ? 'Play Again' : 'Play';
 
   return (
     <div className="highscore-container">
       <Header inGame={false} />
       <div className="highscore--title">Highscores</div>
+      {isNewHighscore && <div className="highscore--text">New Highscore!</div>}
       <div className="highscore--list-button-wrapper">
         <ul className="highscore--list">
           {scores.map(renderScore)}
         </ul>
         <div className="highscore-buttons--container">
-          <LinkButton to={Pages.Game}>Play Again</LinkButton>
+          <LinkButton to={Pages.Game}>{playButtonText}</LinkButton>
           <LinkButton type="secondary" to={Pages.Home}>Home</LinkButton>
         </div>
       </div>
